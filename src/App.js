@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button'
 
 function App() {
   const Click = () => {
+    alert('Hello world');
     console.log('Hello world')
   }
   return (
