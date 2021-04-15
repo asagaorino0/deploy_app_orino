@@ -1,8 +1,7 @@
-import React, { useContext, useState, useReducer } from 'react'
+import React, { useContext, useState } from 'react'
 import { Store } from '../store/index'
 import { Form, Button } from 'react-bootstrap'
 import { INCREMENT, DECREMENT, RESET, ADD_EVENT } from '../actions/index'
-import reducer from '../reducers/index';
 
 const TopPage = () => {
     const [title, setTitle] = useState('');
@@ -43,7 +42,7 @@ const TopPage = () => {
             </p>
             <button onClick={incrment}>いいねいいね</button>
             <button onClick={decrment}>よくないね</button>
-            <button onClick={reset}>reset</button>
+            <button onClick={reset}>RESET</button>
             <h1>{globalState.count}</h1>
             <Form>
                 {/* <Form.Group controlId="formBasicPassword"> */}

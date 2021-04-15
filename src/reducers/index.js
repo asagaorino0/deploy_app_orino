@@ -10,7 +10,12 @@ const reducer = (state, action) => {
             return { ...state, count: 0 };
         case ADD_EVENT:
             console.log('action', action.title)
-            return { ...state, nandemo: action.title }
+            if (action.title === "") {
+                return { ...state, nandemo: action.title = "こら～" };
+            }
+            else {
+                return { ...state, nandemo: action.title };
+            };
 
         default:
             return state
