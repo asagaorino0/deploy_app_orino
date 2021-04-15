@@ -2,6 +2,8 @@ import React, { useReducer, createContext } from 'react'
 import reducer from '../reducers/index'
 const initialState = {
     count: 0,
+    data: [],
+    title: [],
 }
 
 export const Store = createContext({

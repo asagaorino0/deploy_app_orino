@@ -1,11 +1,13 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useReducer } from 'react'
 import { Store } from '../store/index'
-import Button from 'react-bootstrap/Button'
-import { INCREMENT, DECREMENT, RESET } from '../actions/index'
+import { Form, Button } from 'react-bootstrap'
+import { INCREMENT, DECREMENT, RESET, ADD_EVENT } from '../actions/index'
+import reducer from '../reducers/index';
 
 const TopPage = () => {
+    const [title, setTitle] = useState('');
     const Click = () => {
-        alert('Hello world');
+        alert(globalState.nandemo);
         console.log('Hello world')
     }
     const { globalState, setGlobalState } =
@@ -25,21 +27,40 @@ const TopPage = () => {
             type: RESET
         });
     };
+    const handleClick = () => {
+        setGlobalState({
+            type: ADD_EVENT,
+            title,
+        });
+        // console.log('top', title)
+        console.log('.title', globalState.nandemo)
+    }
     console.log(globalState)
-
     return (
-        <div>
-            {/* <header> */}
+        <>
             <p>
                 <Button onClick={Click}>押して!</Button>{' '}
             </p>
-            {/* </header> */}
             <button onClick={incrment}>いいねいいね</button>
             <button onClick={decrment}>よくないね</button>
             <button onClick={reset}>reset</button>
             <h1>{globalState.count}</h1>
-        </div>
+            <Form>
+                {/* <Form.Group controlId="formBasicPassword"> */}
+                <Form.Group controlId="formBasicPassword">
+                    <Form.Label>なにか文字を入力してください</Form.Label>
+                    <Form.Control
+                        type="text"
+                        placeholder="nandemo"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
+                </Form.Group>
+                <Button onClick={handleClick}>hello!</Button>{' '}
+            </Form>
+            <h1>{globalState.nandemo}</h1>
+        </>
     );
-}
+};
 
 export default TopPage

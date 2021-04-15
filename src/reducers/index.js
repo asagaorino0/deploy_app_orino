@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT, RESET } from '../actions/index'
+import { INCREMENT, DECREMENT, RESET, ADD_EVENT } from '../actions/index'
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -8,6 +8,10 @@ const reducer = (state, action) => {
             return { ...state, count: state.count - 1 };
         case RESET:
             return { ...state, count: 0 };
+        case ADD_EVENT:
+            console.log('action', action.title)
+            return { ...state, nandemo: action.title }
+
         default:
             return state
     }
