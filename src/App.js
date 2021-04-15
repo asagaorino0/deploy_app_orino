@@ -1,20 +1,16 @@
 import './App.css';
-import Button from 'react-bootstrap/Button'
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import TopPage from './pages/TopPage'
 
 function App() {
-  const Click = () => {
-    alert('Hello world');
-    console.log('Hello world')
-  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          <Button onClick={Click}>押して!</Button>{' '}
-        </p>
-      </header>
-    </div>
+    <Router>
+      <header />
+      <Switch>
+        <Route exact path='/' component={TopPage} />
+      </Switch>
+    </Router>
   );
 }
-
-export default App;
+export default App
