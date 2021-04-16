@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { Store } from '../store/index'
 import { Form, Button } from 'react-bootstrap'
-import { ALART, INCREMENT, DECREMENT, RESET, ADD_EVENT } from '../actions/index'
+import { ALART, INCREMENT, DECREMENT, RESET, ADD_EVENT, GUU, CHOKI, PAA } from '../actions/index'
 
 const TopPage = () => {
     const [title, setTitle] = useState('');
@@ -36,6 +36,21 @@ const TopPage = () => {
             title,
         });
     }
+    const guu = () => {
+        setGlobalState({
+            type: GUU,
+        });
+    }
+    const choki = () => {
+        setGlobalState({
+            type: CHOKI,
+        });
+    }
+    const paa = () => {
+        setGlobalState({
+            type: PAA,
+        });
+    }
     console.log(globalState)
 
     return (
@@ -43,6 +58,14 @@ const TopPage = () => {
             <p>
                 <Button onClick={Click}>押して!</Button>{' '}
             </p>
+            <p>
+                <button onClick={guu}>ぐー</button>
+                <button onClick={choki}>ちょき</button>
+                <button onClick={paa}>ぱー</button>
+            </p>
+            <h2>あなた：{globalState.me}</h2>
+            <h2>ＣＰＵ：{globalState.cpu}</h2>
+
             <button onClick={incrment}>いいねいいね</button>
             <button onClick={decrment}>よくないね</button>
             <button onClick={reset}>RESET</button>

@@ -1,4 +1,4 @@
-import { ALART, INCREMENT, DECREMENT, RESET, ADD_EVENT } from '../actions/index'
+import { ALART, INCREMENT, DECREMENT, RESET, ADD_EVENT, GUU, CHOKI, PAA } from '../actions/index'
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -24,6 +24,18 @@ const reducer = (state, action) => {
             else {
                 return { ...state, alart: action.title }
             };
+        case GUU:
+            var array = ['ぐー', 'ちょき', 'ぱー'];
+            const cpu1 = array[Math.floor(Math.random() * array.length)]
+            return { ...state, cpu: cpu1, me: 'ぐー' };
+        case CHOKI:
+            var array = ['ぐっ', 'ちょき！', 'ぱ～'];
+            const cpu2 = array[Math.floor(Math.random() * array.length)]
+            return { ...state, cpu: cpu2, me: 'ちょき' };
+        case PAA:
+            var array = ['ぐっ', 'ちょき！', 'ぱ～'];
+            const cpu3 = array[Math.floor(Math.random() * array.length)]
+            return { ...state, cpu: cpu3, me: 'ぱー' };
 
         default:
             return state
