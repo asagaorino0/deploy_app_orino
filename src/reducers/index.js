@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT, RESET, ADD_EVENT } from '../actions/index'
+import { ALART, INCREMENT, DECREMENT, RESET, ADD_EVENT } from '../actions/index'
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -11,10 +11,18 @@ const reducer = (state, action) => {
         case ADD_EVENT:
             console.log('action', action.title)
             if (action.title === "") {
-                return { ...state, nandemo: action.title = "こら～" };
+                return { ...state, nandemo: "", error: "こら～" };
             }
             else {
-                return { ...state, nandemo: action.title };
+                return { ...state, nandemo: action.title, error: "" };
+            };
+        case ALART:
+            console.log('Hello world');
+            if (action.title === "") {
+                return { ...state, alart: "HELLO WORLD" }
+            }
+            else {
+                return { ...state, alart: action.title }
             };
 
         default:

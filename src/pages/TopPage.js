@@ -1,16 +1,20 @@
 import React, { useContext, useState } from 'react'
 import { Store } from '../store/index'
 import { Form, Button } from 'react-bootstrap'
-import { INCREMENT, DECREMENT, RESET, ADD_EVENT } from '../actions/index'
+import { ALART, INCREMENT, DECREMENT, RESET, ADD_EVENT } from '../actions/index'
 
 const TopPage = () => {
     const [title, setTitle] = useState('');
-    const Click = () => {
-        alert(globalState.nandemo);
-        console.log('Hello world')
-    }
     const { globalState, setGlobalState } =
         useContext(Store)
+
+    const Click = () => {
+        setGlobalState({
+            type: ALART,
+            title,
+        });
+        alert(globalState.alart)
+    };
     const incrment = () => {
         setGlobalState({
             type: INCREMENT,
@@ -31,10 +35,9 @@ const TopPage = () => {
             type: ADD_EVENT,
             title,
         });
-        // console.log('top', title)
-        console.log('.title', globalState.nandemo)
     }
     console.log(globalState)
+
     return (
         <>
             <p>
@@ -58,6 +61,9 @@ const TopPage = () => {
                 <Button onClick={handleClick}>hello!</Button>{' '}
             </Form>
             <h1>{globalState.nandemo}</h1>
+            <div style={{ color: 'red' }}>
+                <h1>{globalState.error}</h1>
+            </div>
         </>
     );
 };
