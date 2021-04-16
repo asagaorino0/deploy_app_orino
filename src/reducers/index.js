@@ -25,17 +25,45 @@ const reducer = (state, action) => {
                 return { ...state, alart: action.title }
             };
         case GUU:
-            var array = ['ぐー', 'ちょき', 'ぱー'];
-            const cpu1 = array[Math.floor(Math.random() * array.length)]
-            return { ...state, cpu: cpu1, me: 'ぐー' };
+            var array1 = ['ぐっ', 'ちょき！', 'ぱ～'];
+            const cpu1 = array1[Math.floor(Math.random() * array1.length)]
+            if (cpu1 === 'ぐっ') {
+                return { ...state, cpu: cpu1, me: 'ぐー', syouhai: "引分" };
+            }
+            if (cpu1 === 'ちょき！') {
+                return { ...state, cpu: cpu1, me: 'ぐー', syouhai: "勝" };
+            }
+            if (cpu1 === 'ぱ～') {
+                return { ...state, cpu: cpu1, me: 'ぐー', syouhai: "負" };
+            }
+            break
         case CHOKI:
-            var array = ['ぐっ', 'ちょき！', 'ぱ～'];
-            const cpu2 = array[Math.floor(Math.random() * array.length)]
-            return { ...state, cpu: cpu2, me: 'ちょき' };
+            var array2 = ['ぐっ', 'ちょき！', 'ぱ～'];
+            const cpu2 = array2[Math.floor(Math.random() * array2.length)]
+            if (cpu2 === 'ちょき！') {
+                return { ...state, cpu: cpu2, me: 'ちょき', syouhai: "引分" };
+            }
+            if (cpu2 === 'ぱ～') {
+                return { ...state, cpu: cpu2, me: 'ちょき', syouhai: "勝" };
+            }
+            if (cpu2 === 'ぐっ') {
+                return { ...state, cpu: cpu2, me: 'ちょき', syouhai: "負" };
+            }
+            break
         case PAA:
-            var array = ['ぐっ', 'ちょき！', 'ぱ～'];
-            const cpu3 = array[Math.floor(Math.random() * array.length)]
-            return { ...state, cpu: cpu3, me: 'ぱー' };
+            var array3 = ['ぐっ', 'ちょき！', 'ぱ～'];
+            const cpu3 = array3[Math.floor(Math.random() * array3.length)]
+
+            if (cpu3 === 'ぱ～') {
+                return { ...state, cpu: cpu3, me: 'ぱ～', syouhai: "引分" };
+            }
+            if (cpu3 === 'ぐっ') {
+                return { ...state, cpu: cpu3, me: 'ぱ～', syouhai: "勝" };
+            }
+            if (cpu3 === 'ちょき！') {
+                return { ...state, cpu: cpu3, me: 'ぱ～', syouhai: "負" };
+            }
+            break
 
         default:
             return state

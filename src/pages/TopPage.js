@@ -63,13 +63,17 @@ const TopPage = () => {
                 <button onClick={choki}>ちょき</button>
                 <button onClick={paa}>ぱー</button>
             </p>
-            <h2>あなた：{globalState.me}</h2>
-            <h2>ＣＰＵ：{globalState.cpu}</h2>
-
+            <div >
+                <h2>あなた：{globalState.me}</h2>
+                <h2>ＣＰＵ：{globalState.cpu}</h2>
+                <div style={{ color: 'red', fontSize: '50px', marginTop: 0 }}>
+                    <h1>{globalState.syouhai}</h1>
+                </div>
+            </div>
             <button onClick={incrment}>いいねいいね</button>
             <button onClick={decrment}>よくないね</button>
             <button onClick={reset}>RESET</button>
-            <h1>{globalState.count}</h1>
+            <h3>{globalState.count}</h3>
             <Form>
                 {/* <Form.Group controlId="formBasicPassword"> */}
                 <Form.Group controlId="formBasicPassword">
