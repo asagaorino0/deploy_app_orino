@@ -120,7 +120,7 @@ const TopPage = () => {
                                             />
                                         </a>
                                     </div>
-                                    <div>
+                                    <div style={{ marginLeft: '10px' }}>
                                         <h4 className="" style={{ marginBottom: '0px' }}>
                                             {item.user.name}
                                         </h4>
