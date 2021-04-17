@@ -1,7 +1,8 @@
-import React, { useContext, useState } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
+import { fetchGetData } from '../apis/index'
 import { Store } from '../store/index'
 import { Form, Button } from 'react-bootstrap'
-import { ALART, INCREMENT, DECREMENT, RESET, ADD_EVENT, GUU, CHOKI, PAA } from '../actions/index'
+import { ALART, INCREMENT, DECREMENT, RESET, ADD_EVENT, GUU, CHOKI, PAA, GET_DATA } from '../actions/index'
 
 const TopPage = () => {
     const [title, setTitle] = useState('');
@@ -12,7 +13,8 @@ const TopPage = () => {
         setGlobalState({
             type: ALART,
             title,
-        });
+        }, [globalState.alart]);
+        // });
         alert(globalState.alart)
     };
     const incrment = () => {
@@ -51,10 +53,20 @@ const TopPage = () => {
             type: PAA,
         });
     }
+    useEffect(() => {
+        fetchGetData().then(res => {
+            setGlobalState({
+                type: GET_DATA,
+                data: res.data
+            })
+        })
+        // ?????
+    }, [])
+
     console.log(globalState)
 
     return (
-        <>
+        <div style={{ marginLeft: '50' }}>
             <p>
                 <Button onClick={Click}>押して!</Button>{' '}
             </p>
@@ -91,7 +103,38 @@ const TopPage = () => {
             <div style={{ color: 'red' }}>
                 <h1>{globalState.error}</h1>
             </div>
-        </>
+            <div style={{}}>
+                {
+                    globalState.user_data.map(item => (
+                        <div key={item.id} style={{ marginTop: '30px', borderTop: '1px solid' }}>
+                            <div style={{ margin: '30px' }}>
+                                <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                                    <div>
+                                        <a href={item.url}>
+                                            <img
+                                                width={64}
+                                                height={64}
+                                                borderradius="50%"
+                                                alt=""
+                                                src={item.user.profile_image_url}
+                                            />
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <h4 className="" style={{ marginBottom: '0px' }}>
+                                            {item.user.name}
+                                        </h4>
+                                        <small> {item.updated_at}に更新</small>
+                                    </div>
+                                </div>
+                                <a href={item.url} style={{ textDecoration: 'none', color: '#3e3e3e' }}>
+                                    <h3 className="css-cgzq40">{item.title}</h3>
+                                </a>
+                            </div>
+                        </div>
+                    ))}
+            </div>
+        </div >
     );
 };
 

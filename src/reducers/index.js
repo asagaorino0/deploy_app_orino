@@ -1,4 +1,4 @@
-import { ALART, INCREMENT, DECREMENT, RESET, ADD_EVENT, GUU, CHOKI, PAA } from '../actions/index'
+import { ALART, INCREMENT, DECREMENT, RESET, ADD_EVENT, GUU, CHOKI, PAA, GET_DATA } from '../actions/index'
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -64,6 +64,9 @@ const reducer = (state, action) => {
                 return { ...state, cpu: cpu3, me: 'ぱ～', syouhai: "負" };
             }
             break
+        case GET_DATA:
+            console.log(action.data)
+            return { ...state, user_data: action.data }
 
         default:
             return state
