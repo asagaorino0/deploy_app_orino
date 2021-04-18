@@ -1,11 +1,14 @@
-import React, { useEffect, useContext, useState } from 'react'
+import React, { useEffect, useContext, useState, } from 'react'
 import { fetchGetData } from '../apis/index'
 import { Store } from '../store/index'
 import { Form, Button } from 'react-bootstrap'
 import { ALART, INCREMENT, DECREMENT, RESET, ADD_EVENT, GUU, CHOKI, PAA, GET_DATA } from '../actions/index'
+import { useHistory } from 'react-router-dom'
 
 const TopPage = () => {
     const [title, setTitle] = useState('');
+    const [isBtnHide, setIsBtnHide] = useState(true)
+
     const { globalState, setGlobalState } =
         useContext(Store)
 
@@ -33,6 +36,7 @@ const TopPage = () => {
         });
     };
     const handleClick = () => {
+        setIsBtnHide("");
         setGlobalState({
             type: ADD_EVENT,
             title,
@@ -62,7 +66,11 @@ const TopPage = () => {
         })
         // ?????
     }, [])
-
+    const history = useHistory();
+    const secondPage = () => {
+        const hello = (globalState.nandemo)
+        history.push(`/SecondPage/${hello}`)
+    };
     console.log(globalState)
 
     return (
@@ -97,7 +105,10 @@ const TopPage = () => {
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 </Form.Group>
-                <Button onClick={handleClick}>hello!</Button>{' '}
+                <Button onClick={handleClick}>o.k.!</Button>{' '}
+                {!isBtnHide &&
+                    <button onClick={secondPage}>{globalState.nandemo} → </button>
+                }
             </Form>
             <h1>{globalState.nandemo}</h1>
             <div style={{ color: 'red' }}>
