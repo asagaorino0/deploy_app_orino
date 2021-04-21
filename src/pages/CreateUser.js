@@ -8,12 +8,13 @@ const CreateUser = () => {
     const [password, setPassword] = useState('')
     const history = useHistory()
     const handleClick = () => {
-        history.push('/login')
+        // history.push('/login')
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then((userCredential) => {
                 // Signed in
                 console.log('success login')
                 var user = userCredential.user;
+                history.push('/Main')
                 // ...
             })
             .catch((error) => {
