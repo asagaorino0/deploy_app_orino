@@ -14,7 +14,8 @@ const CreateUser = () => {
                 // Signed in
                 console.log('success login')
                 var user = userCredential.user;
-                history.push('/Main')
+                const hello = (userCredential.user.email)
+                history.push(`/Main/${hello}`)
                 // ...
             })
             .catch((error) => {
