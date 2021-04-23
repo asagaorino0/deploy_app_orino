@@ -17,11 +17,25 @@ const CreateUser = () => {
                 const hello = (userCredential.user.email)
                 history.push(`/Main/${hello}`)
                 // ...
+                console.log(user)
+                // Construct the email link credential from the current URL.
+                var credential = firebase.auth.EmailAuthProvider.credentialWithLink(
+                    email, window.location.href);
+                // Re-authenticate the user with this credential.
+                firebase.auth().currentUser.reauthenticateWithCredential(credential)
+                    .then((usercred) => {
+                        // The user is now successfully re-authenticated and can execute sensitive
+                        // operations.
+                    })
+                    .catch((error) => {
+                        // Some error occurred.
+                    });
             })
             .catch((error) => {
                 var errorCode = error.code;
                 var errorMessage = error.message;
-                console.log(error.massage)
+                console.log(errorCode)
+                console.log(errorMessage)
                 // ..
             });
     }
