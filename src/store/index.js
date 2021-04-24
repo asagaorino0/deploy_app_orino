@@ -4,7 +4,8 @@ const initialState = {
     count: 0,
     user_data: [],
     title: [],
-    name: []
+    name: [],
+    nameH: [],
 }
 
 export const Store = createContext({

@@ -3,11 +3,11 @@ import { ALART, INCREMENT, DECREMENT, RESET, ADD_EVENT, GUU, CHOKI, PAA, GET_DAT
 const reducer = (state, action) => {
     switch (action.type) {
         case NAME_GOOGLE:
-            return { ...state, name: action.name + "でログインしています。" };
+            return { ...state, name: action.name + "でログインしています。", nameH: action.name };
         case NAME_EMAIL:
-            return { ...state, name: action.name + "でログインしています。" };
+            return { ...state, name: action.name + "でログインしています。", nameH: action.name };
         case NAME_LOGOUT:
-            return { ...state, name: action.name };
+            return { ...state, name: action.name, nameH: [] };
         case INCREMENT:
             return { ...state, count: state.count + 1 };
         case DECREMENT:

@@ -1,23 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import firebase from '../config/firebase'
+import { NAME_EMAIL } from '../actions/index'
+import { Store } from '../store/index'
 const CreateUser = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const history = useHistory()
+    const { globalState, setGlobalState } = useContext(Store)
     const handleClick = () => {
-        // history.push('/login')
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then((userCredential) => {
                 // Signed in
                 console.log('success login')
                 var user = userCredential.user;
-                const hello = (userCredential.user.email)
-                history.push(`/Main/${hello}`)
+                const name = (userCredential.user.email)
+                history.push(`/Main/${name}`)
                 // ...
-                console.log(user)
+                setGlobalState({
+                    type: NAME_EMAIL,
+                    name,
+                });
+                console.log(globalState.name)
                 // Construct the email link credential from the current URL.
                 var credential = firebase.auth.EmailAuthProvider.credentialWithLink(
                     email, window.location.href);

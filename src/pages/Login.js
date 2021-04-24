@@ -11,9 +11,7 @@ const Login = () => {
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
     const history = useHistory()
-    const { globalState, setGlobalState } =
-        useContext(Store)
-
+    const { globalState, setGlobalState } = useContext(Store)
     const handleClick = () => {
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then((userCredential) => {
