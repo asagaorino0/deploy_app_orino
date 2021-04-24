@@ -1,7 +1,13 @@
-import { ALART, INCREMENT, DECREMENT, RESET, ADD_EVENT, GUU, CHOKI, PAA, GET_DATA } from '../actions/index'
+import { ALART, INCREMENT, DECREMENT, RESET, ADD_EVENT, GUU, CHOKI, PAA, GET_DATA, NAME_GOOGLE, NAME_EMAIL, NAME_LOGOUT } from '../actions/index'
 
 const reducer = (state, action) => {
     switch (action.type) {
+        case NAME_GOOGLE:
+            return { ...state, name: action.name + "でログインしています。" };
+        case NAME_EMAIL:
+            return { ...state, name: action.name + "でログインしています。" };
+        case NAME_LOGOUT:
+            return { ...state, name: action.name };
         case INCREMENT:
             return { ...state, count: state.count + 1 };
         case DECREMENT:
