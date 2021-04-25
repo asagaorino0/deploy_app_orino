@@ -12,7 +12,9 @@ const reducer = (state, action) => {
             const create = {
                 first: action.first, last: action.last, born: action.born
             };
-            return { ...state, first: action.first, last: action.last, born: action.born }
+            const id = state.length + 1;
+            return [...state, { id, ...create }];
+        // return { ...state, first: action.first, last: action.last, born: action.born }
         case ADD_RESET:
             return []
         case INCREMENT:

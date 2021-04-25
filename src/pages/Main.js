@@ -16,6 +16,7 @@ const Main = () => {
     const [last, setLast] = useState('')
     const [born, setBorn] = useState(0)
     const db = firebase.firestore();
+    const doc = firebase.firestore();
     const history = useHistory()
     const { name } = useParams();
     const handleCreate = async () => {
@@ -26,17 +27,22 @@ const Main = () => {
             born,
         })
         //　↓確認用、後で消す。
+        console.log(doc.id)
         console.log(`${first}`)
         console.log(`${last}`)
         console.log(`${born}`)
-        await db.collection('users').add({
+        // await db.collection('users').add({
+        await db.collection('users').doc("programmingAcademy").set({
             first: (`${first}`),
             last: (`${last}`),
             born: (`${born}`)
         })
             .then((docRef) => {
-                console.log("Document written with ID: ", docRef.id);
-                alert(docRef.id + first + "が登録されました")
+                console.log("Document written with ID: ");
+                // db.collection("users").doc(docRef.id).set({
+                //     doc: "555",
+                // })
+                alert(first + last + " が登録されました。")
             })
             .catch((error) => {
                 console.error("Error adding document: ", error);

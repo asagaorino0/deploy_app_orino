@@ -34,6 +34,7 @@ export const createData = async () => {
 export const readData = async () => {
     await db.collection("users").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
+            console.log({ doc })
             console.log(`${doc.id} => ${doc.data().first}`);
             console.log(`${doc.id} => ${doc.data().last}`);
             console.log(`${doc.id} => ${doc.data().born}`);
