@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import { createData, readData, setData, upDate, Delete } from '../config/firebase';
 import TextField from '@material-ui/core/TextField';
 import reducer from '../reducers/index';
-import { ADD_CREATE } from '../actions/index'
+import { ADD_CREATE, ADD_RESET } from '../actions/index'
 import firebase from "firebase/app"
 import "firebase/firestore";
 import "firebase/auth";
@@ -36,11 +36,13 @@ const Main = () => {
         })
             .then((docRef) => {
                 console.log("Document written with ID: ", docRef.id);
+                alert(docRef.id + first + "が登録されました")
             })
             .catch((error) => {
                 console.error("Error adding document: ", error);
             })
         // await createData(); 、、、ちょーむず。
+
     }
     const handleSetdata = async () => {
         await setData()
@@ -85,6 +87,7 @@ const Main = () => {
                 id="born"
                 label="born"
                 type="number"
+                defaultValue="1950"
                 variant="outlined"
                 onChange={e => setBorn(e.target.value)}
             />
