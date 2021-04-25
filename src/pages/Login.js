@@ -32,6 +32,45 @@ const Login = () => {
                 console.log(errorMessage)
             });
     }
+    const gClick = () => {
+        var provider = new firebase.auth.GoogleAuthProvider();
+        provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+        firebase.auth().languageCode = 'jp';
+        provider.setCustomParameters({
+            'login_hint': 'user@example.com'
+        });
+        firebase.auth().signInWithRedirect(provider);
+        firebase.auth()
+            .getRedirectResult()
+            .then((result) => {
+                if (result.credential) {
+                    /** @type {firebase.auth.OAuthCredential} */
+                    var credential = result.credential;
+                    // This gives you a Google Access Token. You can use it to access the Google API.
+                    var token = credential.accessToken;
+                    // ...
+                    const name = (user.displayName)
+                    history.push(`/Main/${name}`)
+                    setGlobalState({
+                        type: NAME_GOOGLE,
+                        name,
+                    });
+                    console.log(globalState.name)
+                }
+                // The signed-in user info.
+                var user = result.user;
+            }).catch((error) => {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // The email of the user's account used.
+                var email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                var credential = error.credential;
+                // ...
+                console.log(errorCode, errorMessage, email, credential)
+            });
+    }
     const googleClick = () => {
         var provider = new firebase.auth.GoogleAuthProvider();
         // provider.addScope('https://www.googleapis.com/auth/admin.directory.customer.readonly');
@@ -90,6 +129,9 @@ const Login = () => {
             <br />
             {error}
             <Button variant="contained" onClick={googleClick} color="primary">googleでログイン</Button><br />
+            <br />
+            {error}
+            <Button variant="contained" onClick={gClick} color="primary">googleでログイン.direct</Button><br />
             <br />
             {error}
             <Button variant="contained" onClick={signOut}>Logout</Button><br />

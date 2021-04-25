@@ -1,4 +1,4 @@
-import { ALART, INCREMENT, DECREMENT, RESET, ADD_EVENT, GUU, CHOKI, PAA, GET_DATA, NAME_GOOGLE, NAME_EMAIL, NAME_LOGOUT } from '../actions/index'
+import { ALART, INCREMENT, DECREMENT, RESET, ADD_EVENT, GUU, CHOKI, PAA, GET_DATA, NAME_GOOGLE, NAME_EMAIL, NAME_LOGOUT, ADD_CREATE } from '../actions/index'
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -8,6 +8,11 @@ const reducer = (state, action) => {
             return { ...state, name: action.name + "でログインしています。", nameH: action.name };
         case NAME_LOGOUT:
             return { ...state, name: action.name, nameH: [] };
+        case ADD_CREATE:
+            const create = {
+                first: action.first, last: action.last, born: action.born
+            };
+            return { ...state, first: action.first, last: action.last, born: action.born }
         case INCREMENT:
             return { ...state, count: state.count + 1 };
         case DECREMENT:

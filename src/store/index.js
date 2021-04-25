@@ -6,6 +6,9 @@ const initialState = {
     title: [],
     name: [],
     nameH: [],
+    first: [],
+    last: [],
+    born: (0),
 }
 
 export const Store = createContext({
