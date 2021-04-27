@@ -80,8 +80,8 @@ const Main = () => {
         // console.log(`${last}`)
         console.log(`${born}`)
 
-        // await db.collection("users").where("first", "==", `${first}`)
-        await db.collection("users").where("born", "==", 1815)
+        await db.collection("users").where("first", "==", `${first}`)
+            // await db.collection("users").where("born", "==", 1815)
             .get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
