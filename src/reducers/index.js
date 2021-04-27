@@ -1,4 +1,5 @@
-import { ALART, INCREMENT, DECREMENT, RESET, ADD_EVENT, GUU, CHOKI, PAA, GET_DATA, NAME_GOOGLE, NAME_EMAIL, NAME_LOGOUT, ADD_CREATE, ADD_RESET } from '../actions/index'
+import { ALART, INCREMENT, DECREMENT, RESET, ADD_EVENT, GUU, CHOKI, PAA, GET_DATA, NAME_GOOGLE, NAME_EMAIL, NAME_LOGOUT, ADD_CREATE, CHOICE_DOC } from '../actions/index'
+// import firebase from "firebase/app"
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -10,13 +11,20 @@ const reducer = (state, action) => {
             return { ...state, name: action.name, nameH: [] };
         case ADD_CREATE:
             const create = {
-                first: action.first, last: action.last, born: action.born
+                id: action.id, first: action.first, last: action.last, born: action.born
             };
-            const id = state.length + 1;
-            return [...state, { id, ...create }];
-        // return { ...state, first: action.first, last: action.last, born: action.born }
-        case ADD_RESET:
-            return []
+            // const id = state.length + 1;
+            // return [...state, { id, ...create }];
+            return { ...state, id: action.id, first: action.first, last: action.last, born: action.born }
+        case CHOICE_DOC:
+            // const db = firebase.firestore();
+            // const doc = firebase.firestore();
+            const choice = {
+                id: state.id, first: state.first, last: action.last, born: action.born
+            };
+            console.log({ choice });
+
+            return { ...state, choice: { choice } };
         case INCREMENT:
             return { ...state, count: state.count + 1 };
         case DECREMENT:

@@ -8,7 +8,7 @@ const initialState = {
     nameH: [],
     first: [],
     last: [],
-    born: (1980),
+    born: 0,
 }
 
 export const Store = createContext({

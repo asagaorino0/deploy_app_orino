@@ -25,7 +25,6 @@ export const createData = async () => {
         .then((docRef) => {
             console.log("Document written with ID: ", docRef.id);
         })
-
         .catch((error) => {
             console.error("Error adding document: ", error);
         })
@@ -34,13 +33,53 @@ export const createData = async () => {
 export const readData = async () => {
     await db.collection("users").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            console.log({ doc })
+            console.log(`${doc.id} `);
             console.log(`${doc.id} => ${doc.data().first}`);
             console.log(`${doc.id} => ${doc.data().last}`);
             console.log(`${doc.id} => ${doc.data().born}`);
         });
     });
+    // class Users {
+    //     constructor(first, last, born) {
+    //         // this.id = id;
+    //         this.first = first;
+    //         this.last = last;
+    //         this.born = born;
+    //     }
+    //     toString() {
+    //         return this.first + ', ' + this.last + ', ' + this.born;
+    //     }
+    // }
+    // // Firestore data converter
+    // var usersConverter = {
+    //     toFirestore: function (users) {
+    //         return {
+    //             first: users.first,
+    //             last: users.last,
+    //             born: users.born
+    //         };
+    //     },
+    //         fromFirestore: function (snapshot, options) {
+    //             const data = snapshot.data(options);
+    //             return new Users(data.first, data.last, data.born);
+    //         }
+    //     };
 }
+export const choiceData = async () => {
+    var docRef = db.collection("users").doc("ぷろあか");
+
+    docRef.get().then((doc) => {
+        if (doc.exists) {
+            console.log("Document data:", doc.data());
+            console.log(doc.id, " => ", doc.data());//kokoni"state"wotasitemiru
+        } else {
+            console.log("No such document!");
+        }
+    }).catch((error) => {
+        console.log("Error getting document:", error);
+    });
+}
+
 export const setData = async () => {
     await
         db.collection("cities").doc("LA").set({

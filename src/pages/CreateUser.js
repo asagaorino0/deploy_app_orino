@@ -16,7 +16,7 @@ const CreateUser = () => {
                 // Signed in
                 console.log('success login')
                 var user = userCredential.user;
-                const name = (userCredential.user.email)
+                const name = (user.email)
                 history.push(`/Main/${name}`)
                 // ...
                 setGlobalState({

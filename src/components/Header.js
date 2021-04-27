@@ -7,7 +7,7 @@ const Header = () => {
     const history = useHistory()
     const { nameH } = useParams();
     // console.log("0", nameH)
-    const { globalState, setGlobalState } = useContext(Store)
+    const { globalState } = useContext(Store)
     const onTop = () => {
         history.push('/');
         console.log("1", globalState.nameH, nameH)
