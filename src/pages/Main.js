@@ -42,14 +42,14 @@ const Main = () => {
             first: (`${first}`),
             last: (`${last}`),
             born: (`${born}`),
-            capital: false,
+            capital: true,
         },
-            { merge: false })
+            { merge: true })
             .then((docRef) => {
-                // console.log("Document written with ID: ", docRef.id);
-                // db.collection("users").doc(docRef.id).set({
-                //     item: "555",
-                // })
+                var docRef = db.collection('users').doc(`${id}`);
+                var updateTimestamp = docRef.update({
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
                 alert(first + last + " が登録されました。")
             })
             .catch((error) => {
