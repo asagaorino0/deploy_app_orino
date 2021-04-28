@@ -19,12 +19,11 @@ const reducer = (state, action) => {
         case CHOICE_DOC:
             // const db = firebase.firestore();
             // const doc = firebase.firestore();
-            const choice = {
-                id: state.id, first: state.first, last: action.last, born: action.born
+            return {
+                ...state, choice: {
+                    id: action.id, first: action.first, last: action.last, born: action.born
+                }
             };
-            console.log({ choice });
-
-            return { ...state, choice: { choice } };
         case INCREMENT:
             return { ...state, count: state.count + 1 };
         case DECREMENT:

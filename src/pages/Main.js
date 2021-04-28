@@ -46,7 +46,7 @@ const Main = () => {
         },
             { merge: false })
             .then((docRef) => {
-                console.log("Document written with ID: ", docRef.id);
+                // console.log("Document written with ID: ", docRef.id);
                 // db.collection("users").doc(docRef.id).set({
                 //     item: "555",
                 // })
@@ -68,39 +68,17 @@ const Main = () => {
 
     //number,map,,,,
     const handleChoice = async () => {
-        dispatch({
-            type: ADD_CREATE,
-            // id,
-            first,
-            // last,
-            born,
-        })
-        // console.log(`${id}`)
-        console.log("姓:", `${first}`)
-        // console.log(`${last}`)
-        console.log(`${born}`)
-
         await db.collection("users").where("first", "==", `${first}`)
             // await db.collection("users").where("born", "==", 1815)
             .get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
-                    console.log(doc.id, " => ", doc.data());
-                    setGlobalState({
-                        type: CHOICE_DOC,
-                        id,
-                        first,
-                        last,
-                        born,
-                    })
-                });
-                console.log(globalState.choice)
+                    console.log(doc.id, " => ", doc.data())
+                })
             })
             .catch((error) => {
                 console.log("Error getting documents: ", error);
-                var docRef = db.collection("users");
-            });
-        // await choiceData();
+            })
     }
     const handleUpdate = async () => {
         await upDate();
